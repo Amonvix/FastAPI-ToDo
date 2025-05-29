@@ -1,25 +1,37 @@
 # routers/task.py
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
 from typing import List
-from schemas.task import Task
 
-# Initialize a router instance for task-related endpoints
+from database import SessionLocal
+from schemas.task import TaskCreate, TaskOut
+from crud import task as crud_task
+
+# Initialize router
 router = APIRouter(
     prefix="/tasks",
     tags=["Tasks"]
 )
 
-# Temporary mock data to simulate task list
-mock_tasks = [
-    {"id": 1, "title": "Study FastAPI", "is_done": False},
-    {"id": 2, "title": "Write clean code", "is_done": True},
-]
+# Dependency to get DB session in each request
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-@router.get("/", response_model=List[Task])
-async def get_tasks():
+@router.get("/", response_model=List[TaskOut])
+def read_tasks(db: Session = Depends(get_db)):
     """
-    Retrieve a list of all tasks.
-    This is a temporary mock implementation.
+    Retrieve all tasks from the database.
     """
-    return mock_tasks
+    return crud_task.get_tasks(db)
+
+@router.post("/", response_model=TaskOut, status_code=201)
+def create_new_task(task_data: TaskCreate, db: Session = Depends(get_db)):
+    """
+    Create a new task with given title and status.
+    """
+    return crud_task.create_task(db, task_data)

@@ -1,8 +1,10 @@
 # main.py
 
 from fastapi import FastAPI
-from routers import task  # Import the task routes module
+from routers import task  
 from fastapi.responses import RedirectResponse
+from database import Base, engine
+
 
 # Initialize FastAPI application instance
 app = FastAPI(
@@ -22,4 +24,7 @@ if __name__ == "__main__":
 @app.get("/", include_in_schema=False)
 def root():
     return RedirectResponse(url="/docs")
+
+# Create tables if they don't exist
+Base.metadata.create_all(bind=engine)
     
