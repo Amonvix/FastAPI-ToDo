@@ -1,4 +1,20 @@
-venv/
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+
+# VSCode settings (opcional)
+.vscode/
+
+# Environment variables (se usar .env)
 .env
+
+# SQLite database (se quiser ignorar local)
+*.db
+
+# Mac/Linux/Windows system files
+.DS_Store
+Thumbs.db
