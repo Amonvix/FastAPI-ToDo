@@ -1,34 +1,90 @@
-# 📝 ToDo API – FastAPI + SQLite
+# ✅ ToDo API – FastAPI CRUD Project
 
-A simple and clean RESTful API for managing tasks, built with FastAPI and SQLite. Designed to be modular, easy to understand, and ready to scale.
+A simple and clean REST API for managing tasks (ToDo items), built with FastAPI, SQLite and SQLAlchemy.  
+Tested with Pytest, documented with Swagger, and ready for production enhancements.
 
 ---
 
 ## 🚀 Features
 
-- Create, read, update and delete tasks (CRUD)
-- Modular architecture (routers, schemas, models, CRUD)
-- SQLite database (can switch to PostgreSQL or others)
-- Clean code with full type annotations and docstrings
-- FastAPI auto-generated docs via Swagger UI
+- 📌 Full CRUD support (`Create`, `Read`, `Update`, `Delete`)
+- 🧠 Data validation with Pydantic
+- 🧪 Automated tests with Pytest
+- 🔍 Interactive docs via Swagger UI
+- 🛠️ Modular and scalable project structure
 
 ---
 
-## 🛠️ Technologies
+## 📂 Project Structure
 
-- Python 3.11+
-- FastAPI
-- SQLite + SQLAlchemy
-- Pydantic
-- Uvicorn (for development server)
+todo_app/
+├── main.py
+├── database.py
+├── models/
+│ └── task.py
+├── schemas/
+│ └── task.py
+├── crud/
+│ └── task.py
+├── routers/
+│ └── task.py
+├── tests/
+│ └── test_main.py
+└── todo.db
 
 ---
 
-## 📦 Installation
+## 🧪 Running the Tests
 
 ```bash
-git clone https://github.com/your-username/todo_app.git
-cd todo_app
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+pytest tests/
+```
+
+📦 Requirements
+Python 3.12+
+
+FastAPI
+
+Uvicorn
+
+SQLAlchemy
+
+Pydantic
+
+Pytest
+
+Httpx
+
+You can install all with:
+```bash
 pip install -r requirements.txt
+```
+
+▶️ How to Run Locally
+Clone the repository
+
+Create a virtual environment
+
+Install dependencies
+
+Run the API:
+
+```bash
+uvicorn main:app --reload
+```
+
+Access the docs at:
+
+http://localhost:8000/docs
+
+🧠 Future Improvements
+Dockerization and cloud deployment
+
+JWT authentication
+
+Alembic migrations
+
+CI pipeline
+
+Made with 💻 by Daniel Pedroso (aka Amon)
+
