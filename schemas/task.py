@@ -15,4 +15,16 @@ class TaskOut(TaskBase):
     id: int
 
     class Config:
-        orm_mode = True  # Allows compatibility with ORM models (like SQLAlchemy)
+        from_attributes = True  # Allows compatibility with ORM models (like SQLAlchemy)
+
+class TaskUpdate(BaseModel):
+    title: str
+    description: str | None = None
+    completed: bool
+
+class Task(TaskBase):
+    id: int
+    completed: bool
+
+    class Config:
+        from_attributes = True  # atualizado para Pydantic v2

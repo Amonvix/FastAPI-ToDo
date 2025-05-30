@@ -1,7 +1,8 @@
 # main.py
 
 from fastapi import FastAPI
-from routers import task  
+from routers import task as task_router
+from models import task  
 from fastapi.responses import RedirectResponse
 from database import Base, engine
 
@@ -14,7 +15,7 @@ app = FastAPI(
 )
 
 # Register the task router under the default prefix
-app.include_router(task.router)
+app.include_router(task_router.router)
 
 # Enable direct execution via `python main.py`
 if __name__ == "__main__":
