@@ -15,6 +15,9 @@ typing_extensions==4.13.2
 uvicorn==0.34.2
 
 fastapi
-uvicorn[standard]
-pydantic
+uvicorn
 sqlalchemy
+pydantic
+pytest
+httpx
+
